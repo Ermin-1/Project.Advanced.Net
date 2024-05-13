@@ -1,0 +1,6 @@
+@Project.Advanced.Net_HostAddress = http://localhost:5294
+
+GET {{Project.Advanced.Net_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
