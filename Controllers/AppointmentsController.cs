@@ -36,6 +36,14 @@ namespace Project.Advanced.Net.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] Appointment appointment)
         {
+            ModelState.Remove("Customer");
+            ModelState.Remove("Company");
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             await _appointmentRepository.AddAsync(appointment);
             return CreatedAtAction(nameof(Get), new { id = appointment.AppointmentId }, appointment);
         }
@@ -58,6 +66,8 @@ namespace Project.Advanced.Net.Controllers
             return NoContent();
         }
 
+
+        //Egna metoder för appointment 
         [HttpGet("customers-with-appointments-this-week")]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomersWithAppointmentsThisWeek()
         {
@@ -75,5 +85,18 @@ namespace Project.Advanced.Net.Controllers
             return Ok(customers);
         }
 
+
+        [HttpGet("count-for-customer/{customerId}/{weekOfYear}")]
+        public async Task<ActionResult<int>> GetAppointmentCountForCustomerThisWeek(int customerId, int weekOfYear)
+        {
+            var repository = _appointmentRepository as AppointmentRepository;
+            if (repository == null)
+            {
+                return BadRequest("Repository casting failed");
+            }
+
+            var count = await repository.GetAppointmentCountForCustomerThisWeek(customerId, weekOfYear);
+            return Ok(count);
+        }
     }
 }

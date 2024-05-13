@@ -16,6 +16,7 @@ namespace Project.Advanced.Net.Services
         public async Task AddAsync(Customer customer)
         {
             await _context.Customers.AddAsync(customer);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)

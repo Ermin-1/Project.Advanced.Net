@@ -101,24 +101,24 @@ namespace Project.Advanced.Net.Migrations
                 columns: new[] { "AppointmentId", "CompanyId", "CustomerId", "Time" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, new DateTime(2024, 5, 13, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4100) },
-                    { 2, 1, 2, new DateTime(2024, 5, 23, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4157) },
-                    { 3, 2, 3, new DateTime(2024, 6, 2, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4170) },
-                    { 4, 3, 4, new DateTime(2024, 6, 12, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4210) },
-                    { 5, 4, 1, new DateTime(2024, 6, 22, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4224) },
-                    { 6, 4, 2, new DateTime(2024, 7, 2, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4236) },
-                    { 7, 5, 5, new DateTime(2024, 5, 18, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4260) },
-                    { 8, 5, 6, new DateTime(2024, 5, 28, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4271) },
-                    { 9, 6, 5, new DateTime(2024, 6, 7, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4282) },
-                    { 10, 6, 6, new DateTime(2024, 6, 17, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4293) },
-                    { 11, 1, 7, new DateTime(2024, 5, 20, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4304) },
-                    { 12, 2, 8, new DateTime(2024, 5, 27, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4316) },
-                    { 13, 3, 9, new DateTime(2024, 6, 3, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4326) },
-                    { 14, 4, 10, new DateTime(2024, 6, 10, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4336) },
-                    { 15, 5, 7, new DateTime(2024, 6, 17, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4347) },
-                    { 16, 6, 8, new DateTime(2024, 6, 24, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4357) },
-                    { 17, 1, 9, new DateTime(2024, 7, 1, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4368) },
-                    { 18, 2, 10, new DateTime(2024, 7, 8, 10, 22, 51, 16, DateTimeKind.Local).AddTicks(4379) }
+                    { 1, 1, 1, new DateTime(2024, 5, 13, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7368) },
+                    { 2, 1, 2, new DateTime(2024, 5, 23, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7418) },
+                    { 3, 2, 3, new DateTime(2024, 6, 2, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7430) },
+                    { 4, 3, 4, new DateTime(2024, 6, 12, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7462) },
+                    { 5, 4, 1, new DateTime(2024, 6, 22, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7472) },
+                    { 6, 4, 2, new DateTime(2024, 7, 2, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7483) },
+                    { 7, 5, 5, new DateTime(2024, 5, 18, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7493) },
+                    { 8, 5, 6, new DateTime(2024, 5, 28, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7503) },
+                    { 9, 6, 5, new DateTime(2024, 6, 7, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7513) },
+                    { 10, 6, 6, new DateTime(2024, 6, 17, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7524) },
+                    { 11, 1, 7, new DateTime(2024, 5, 20, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7533) },
+                    { 12, 2, 8, new DateTime(2024, 5, 27, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7543) },
+                    { 13, 3, 9, new DateTime(2024, 6, 3, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7552) },
+                    { 14, 4, 10, new DateTime(2024, 6, 10, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7563) },
+                    { 15, 5, 7, new DateTime(2024, 6, 17, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7572) },
+                    { 16, 6, 8, new DateTime(2024, 6, 24, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7582) },
+                    { 17, 1, 9, new DateTime(2024, 7, 1, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7591) },
+                    { 18, 2, 10, new DateTime(2024, 7, 8, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7601) }
                 });
 
             migrationBuilder.CreateIndex(

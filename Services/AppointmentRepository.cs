@@ -44,6 +44,8 @@ namespace Project.Advanced.Net.Services
             }
         }
 
+
+        //Metoder specifika för appointment
         public async Task<IEnumerable<Customer>> GetCustomersWithAppointmentsThisWeek()
         {
             var now = DateTime.Now;
@@ -56,6 +58,18 @@ namespace Project.Advanced.Net.Services
                 .Distinct()
                 .ToListAsync();
         }
+
+        public async Task<int> GetAppointmentCountForCustomerThisWeek(int customerId, int weekOfYear)
+        {
+            var yearStart = new DateTime(DateTime.Now.Year, 1, 1);
+            var weekStart = yearStart.AddDays((weekOfYear - 1) * 7);
+            var weekEnd = weekStart.AddDays(7);
+
+            return await _context.Appointments
+                .Where(a => a.CustomerId == customerId && a.Time >= weekStart && a.Time < weekEnd)
+                .CountAsync();
+        }
+
 
 
     }

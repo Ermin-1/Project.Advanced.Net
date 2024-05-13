@@ -15,15 +15,15 @@ namespace Projekt___Avancerad_.NET.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Appointment>()
-           .HasOne(a => a.Customer)
-           .WithMany(c => c.Appointments)
-           .HasForeignKey(a => a.CustomerId);
+        //    modelBuilder.Entity<Appointment>()
+        //   .HasOne(a => a.Customer)
+        //   .WithMany(c => c.Appointments)
+        //   .HasForeignKey(a => a.CustomerId);
 
-            modelBuilder.Entity<Appointment>()
-           .HasOne(a => a.Company)
-           .WithMany(c => c.Appointments)
-            .HasForeignKey(a => a.CompanyId);
+        //    modelBuilder.Entity<Appointment>()
+        //   .HasOne(a => a.Company)
+        //   .WithMany(c => c.Appointments)
+        //    .HasForeignKey(a => a.CompanyId);
 
             base.OnModelCreating(modelBuilder);
 
