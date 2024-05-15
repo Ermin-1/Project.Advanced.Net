@@ -12,6 +12,7 @@ namespace Projekt___Avancerad_.NET.Data
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<AppointmentHistory> AppointmentHistories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

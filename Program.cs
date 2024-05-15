@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Project.Advanced.Net.Data;
 using Project.Advanced.Net.Services;
 using ProjectModels;
 using Projekt___Avancerad_.NET.Data;
@@ -34,6 +35,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddScoped<IRepository<Customer>, CustomerRepository>();
 builder.Services.AddScoped<IRepository<Appointment>, AppointmentRepository>();
 builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();
+builder.Services.AddScoped<IAppointmentHistoryRepository, AppointmentHistoryRepository>();
+
 
 //SQL DB Context
 builder.Services.AddDbContext<AppDbContext>(options =>
