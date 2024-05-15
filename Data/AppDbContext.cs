@@ -27,64 +27,96 @@ namespace Projekt___Avancerad_.NET.Data
 
             base.OnModelCreating(modelBuilder);
 
+
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 1,
-                Name = "Ermin"
+                FirstName = "Ermin",
+                LastName = "Husic",
+                Address = "Campusvägen 7",
+                PhoneNumber = 0734141429
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 2,
-                Name = "Oskar"
+                FirstName = "Oskar",
+                LastName = "Johansson",
+                Address = "Storgatan 10",
+                PhoneNumber = 0723456789
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 3,
-                Name = "Sharam"
+                FirstName = "Sharam",
+                LastName = "Khan",
+                Address = "Lilla vägen 3",
+                PhoneNumber = 0734567890
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 4,
-                Name = "Christian"
+                FirstName = "Christian",
+                LastName = "Andersson",
+                Address = "Parkgatan 15",
+                PhoneNumber = 0765432109
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 5,
-                Name = "Lena"
+                FirstName = "Lena",
+                LastName = "Eriksson",
+                Address = "Skolgatan 2",
+                PhoneNumber = 0721567890
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 6,
-                Name = "Andreas"
+                FirstName = "Andreas",
+                LastName = "Lindström",
+                Address = "Kyrkvägen 6",
+                PhoneNumber = 0709876543
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 7,
-                Name = "Emily"
+                FirstName = "Emily",
+                LastName = "Nilsson",
+                Address = "Strandvägen 12",
+                PhoneNumber = 0723456781
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 8,
-                Name = "David"
+                FirstName = "David",
+                LastName = "Gustafsson",
+                Address = "Backstugan 4",
+                PhoneNumber = 0761234567
             });
+
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 9,
-                Name = "Sophia"
+                FirstName = "Sophia",
+                LastName = "Berg",
+                Address = "Musselvägen 4",
+                PhoneNumber = 0723456782
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 CustomerId = 10,
-                Name = "Alexander"
+                FirstName = "Alexander",
+                LastName = "Larsson",
+                Address = "Storgatan 2",
+                PhoneNumber = 0768765432
             });
 
             modelBuilder.Entity<Company>().HasData(new Company

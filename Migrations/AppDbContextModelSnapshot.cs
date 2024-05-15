@@ -53,126 +53,126 @@ namespace Project.Advanced.Net.Migrations
                             AppointmentId = 1,
                             CompanyId = 1,
                             CustomerId = 1,
-                            Time = new DateTime(2024, 5, 13, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7368)
+                            Time = new DateTime(2024, 5, 15, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4092)
                         },
                         new
                         {
                             AppointmentId = 2,
                             CompanyId = 1,
                             CustomerId = 2,
-                            Time = new DateTime(2024, 5, 23, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7418)
+                            Time = new DateTime(2024, 5, 25, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4148)
                         },
                         new
                         {
                             AppointmentId = 3,
                             CompanyId = 2,
                             CustomerId = 3,
-                            Time = new DateTime(2024, 6, 2, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7430)
+                            Time = new DateTime(2024, 6, 4, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4162)
                         },
                         new
                         {
                             AppointmentId = 4,
                             CompanyId = 3,
                             CustomerId = 4,
-                            Time = new DateTime(2024, 6, 12, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7462)
+                            Time = new DateTime(2024, 6, 14, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4173)
                         },
                         new
                         {
                             AppointmentId = 5,
                             CompanyId = 4,
                             CustomerId = 1,
-                            Time = new DateTime(2024, 6, 22, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7472)
+                            Time = new DateTime(2024, 6, 24, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4184)
                         },
                         new
                         {
                             AppointmentId = 6,
                             CompanyId = 4,
                             CustomerId = 2,
-                            Time = new DateTime(2024, 7, 2, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7483)
+                            Time = new DateTime(2024, 7, 4, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4196)
                         },
                         new
                         {
                             AppointmentId = 7,
                             CompanyId = 5,
                             CustomerId = 5,
-                            Time = new DateTime(2024, 5, 18, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7493)
+                            Time = new DateTime(2024, 5, 20, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4206)
                         },
                         new
                         {
                             AppointmentId = 8,
                             CompanyId = 5,
                             CustomerId = 6,
-                            Time = new DateTime(2024, 5, 28, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7503)
+                            Time = new DateTime(2024, 5, 30, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4217)
                         },
                         new
                         {
                             AppointmentId = 9,
                             CompanyId = 6,
                             CustomerId = 5,
-                            Time = new DateTime(2024, 6, 7, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7513)
+                            Time = new DateTime(2024, 6, 9, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4227)
                         },
                         new
                         {
                             AppointmentId = 10,
                             CompanyId = 6,
                             CustomerId = 6,
-                            Time = new DateTime(2024, 6, 17, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7524)
+                            Time = new DateTime(2024, 6, 19, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4264)
                         },
                         new
                         {
                             AppointmentId = 11,
                             CompanyId = 1,
                             CustomerId = 7,
-                            Time = new DateTime(2024, 5, 20, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7533)
+                            Time = new DateTime(2024, 5, 22, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4275)
                         },
                         new
                         {
                             AppointmentId = 12,
                             CompanyId = 2,
                             CustomerId = 8,
-                            Time = new DateTime(2024, 5, 27, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7543)
+                            Time = new DateTime(2024, 5, 29, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4286)
                         },
                         new
                         {
                             AppointmentId = 13,
                             CompanyId = 3,
                             CustomerId = 9,
-                            Time = new DateTime(2024, 6, 3, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7552)
+                            Time = new DateTime(2024, 6, 5, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4297)
                         },
                         new
                         {
                             AppointmentId = 14,
                             CompanyId = 4,
                             CustomerId = 10,
-                            Time = new DateTime(2024, 6, 10, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7563)
+                            Time = new DateTime(2024, 6, 12, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4308)
                         },
                         new
                         {
                             AppointmentId = 15,
                             CompanyId = 5,
                             CustomerId = 7,
-                            Time = new DateTime(2024, 6, 17, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7572)
+                            Time = new DateTime(2024, 6, 19, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4319)
                         },
                         new
                         {
                             AppointmentId = 16,
                             CompanyId = 6,
                             CustomerId = 8,
-                            Time = new DateTime(2024, 6, 24, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7582)
+                            Time = new DateTime(2024, 6, 26, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4330)
                         },
                         new
                         {
                             AppointmentId = 17,
                             CompanyId = 1,
                             CustomerId = 9,
-                            Time = new DateTime(2024, 7, 1, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7591)
+                            Time = new DateTime(2024, 7, 3, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4340)
                         },
                         new
                         {
                             AppointmentId = 18,
                             CompanyId = 2,
                             CustomerId = 10,
-                            Time = new DateTime(2024, 7, 8, 14, 16, 56, 138, DateTimeKind.Local).AddTicks(7601)
+                            Time = new DateTime(2024, 7, 10, 9, 22, 37, 51, DateTimeKind.Local).AddTicks(4354)
                         });
                 });
 
@@ -233,9 +233,20 @@ namespace Project.Advanced.Net.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
 
                     b.HasKey("CustomerId");
 
@@ -245,52 +256,82 @@ namespace Project.Advanced.Net.Migrations
                         new
                         {
                             CustomerId = 1,
-                            Name = "Ermin"
+                            Address = "Campusvägen 7",
+                            FirstName = "Ermin",
+                            LastName = "Husic",
+                            PhoneNumber = 734141429
                         },
                         new
                         {
                             CustomerId = 2,
-                            Name = "Oskar"
+                            Address = "Storgatan 10",
+                            FirstName = "Oskar",
+                            LastName = "Johansson",
+                            PhoneNumber = 723456789
                         },
                         new
                         {
                             CustomerId = 3,
-                            Name = "Sharam"
+                            Address = "Lilla vägen 3",
+                            FirstName = "Sharam",
+                            LastName = "Khan",
+                            PhoneNumber = 734567890
                         },
                         new
                         {
                             CustomerId = 4,
-                            Name = "Christian"
+                            Address = "Parkgatan 15",
+                            FirstName = "Christian",
+                            LastName = "Andersson",
+                            PhoneNumber = 765432109
                         },
                         new
                         {
                             CustomerId = 5,
-                            Name = "Lena"
+                            Address = "Skolgatan 2",
+                            FirstName = "Lena",
+                            LastName = "Eriksson",
+                            PhoneNumber = 721567890
                         },
                         new
                         {
                             CustomerId = 6,
-                            Name = "Andreas"
+                            Address = "Kyrkvägen 6",
+                            FirstName = "Andreas",
+                            LastName = "Lindström",
+                            PhoneNumber = 709876543
                         },
                         new
                         {
                             CustomerId = 7,
-                            Name = "Emily"
+                            Address = "Strandvägen 12",
+                            FirstName = "Emily",
+                            LastName = "Nilsson",
+                            PhoneNumber = 723456781
                         },
                         new
                         {
                             CustomerId = 8,
-                            Name = "David"
+                            Address = "Backstugan 4",
+                            FirstName = "David",
+                            LastName = "Gustafsson",
+                            PhoneNumber = 761234567
                         },
                         new
                         {
                             CustomerId = 9,
-                            Name = "Sophia"
+                            Address = "Musselvägen 4",
+                            FirstName = "Sophia",
+                            LastName = "Berg",
+                            PhoneNumber = 723456782
                         },
                         new
                         {
                             CustomerId = 10,
-                            Name = "Alexander"
+                            Address = "Storgatan 2",
+                            FirstName = "Alexander",
+                            LastName = "Larsson",
+                            PhoneNumber = 768765432
                         });
                 });
 
