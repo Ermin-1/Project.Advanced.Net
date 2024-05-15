@@ -17,9 +17,30 @@ namespace Project.Advanced.Net.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> Get()
+        public async Task<ActionResult<IEnumerable<Customer>>> Get(
+               string sortBy = "name",
+               string filterBy = "",
+               string filterValue = "")
         {
-            return Ok(await _customerRepository.GetAllAsync());
+            var customers = await _customerRepository.GetAllAsync();
+
+            // Filtrera kunder
+            if (!string.IsNullOrEmpty(filterBy) && !string.IsNullOrEmpty(filterValue))
+            {
+                customers = customers.Where(c =>
+                    c.GetType().GetProperty(filterBy)?.GetValue(c, null)?.ToString().Contains(filterValue) == true
+                ).ToList();
+            }
+
+            // Sortera kunder
+            customers = sortBy.ToLower() switch
+            {
+                "name" => customers.OrderBy(c => c.FirstName).ToList(),
+                "phone" => customers.OrderBy(c => c.PhoneNumber).ToList(),
+                _ => customers.OrderBy(c => c.CustomerId).ToList(),
+            };
+
+            return Ok(customers);
         }
 
         [HttpGet("{id}")]

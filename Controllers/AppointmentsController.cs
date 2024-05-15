@@ -16,10 +16,46 @@ namespace Project.Advanced.Net.Controllers
             _appointmentRepository = appointmentRepository;
         }
 
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Appointment>>> Get()
+        public async Task<ActionResult<IEnumerable<Appointment>>> Get(
+              string sortBy = "date",
+              string filterBy = "",
+              string filterValue = "")
         {
-            return Ok(await _appointmentRepository.GetAllAsync());
+            var appointments = await _appointmentRepository.GetAllAsync();
+
+            // Filtrera bokningar
+            if (!string.IsNullOrEmpty(filterBy) && !string.IsNullOrEmpty(filterValue))
+            {
+                appointments = filterBy.ToLower() switch
+                {
+                    "customer" => appointments.Where(a =>
+                        a.Customer.FirstName.Contains(filterValue, StringComparison.OrdinalIgnoreCase) ||
+                        a.Customer.LastName.Contains(filterValue, StringComparison.OrdinalIgnoreCase) ||
+                        a.Customer.Address.Contains(filterValue, StringComparison.OrdinalIgnoreCase) 
+                    ).ToList(),
+
+                    "company" => appointments.Where(a => 
+                    a.Company.Name.Contains(filterValue, StringComparison.OrdinalIgnoreCase)).ToList(),
+
+                    "id" => appointments.Where(a =>
+                        a.Customer.CustomerId.ToString() == filterValue ||
+                        a.AppointmentId.ToString() == filterValue
+                    ).ToList(),
+
+                    _ => appointments
+                };
+            }
+
+            // Sortera bokningar
+            appointments = sortBy.ToLower() switch
+            {
+                "date" => appointments.OrderBy(a => a.Time).ToList()
+            
+            };
+
+            return Ok(appointments);
         }
 
         [HttpGet("{id}")]
