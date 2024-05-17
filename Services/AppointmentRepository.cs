@@ -16,11 +16,14 @@ namespace Project.Advanced.Net.Services
         public async Task<IEnumerable<Appointment>> GetAllAsync() =>
             await _context.Appointments.Include(a => a.Customer).Include(a => a.Company).ToListAsync();
 
-        public async Task<Appointment> GetByIdAsync(int id) =>
-            await _context.Appointments
+        public async Task<Appointment> GetByIdAsync(int id)
+        {
+            return await _context.Appointments
                 .Include(a => a.Customer)
                 .Include(a => a.Company)
-                .FirstOrDefaultAsync(a => a.AppointmentId == id);
+                .FirstOrDefaultAsync(a => a.CustomerId == id);
+        }
+
 
         public async Task AddAsync(Appointment appointment)
         {
@@ -70,7 +73,6 @@ namespace Project.Advanced.Net.Services
                 .CountAsync();
         }
 
-
-
+ 
     }
 }

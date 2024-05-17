@@ -66,7 +66,7 @@ namespace Project.Advanced.Net.Controllers
             return Ok(appointments);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{Appointment-id}")]
         public async Task<ActionResult<Appointment>> Get(int id)
         {
             var appointment = await _appointmentRepository.GetByIdAsync(id);
@@ -76,6 +76,9 @@ namespace Project.Advanced.Net.Controllers
             }
             return Ok(appointment);
         }
+
+
+
 
         [HttpPost]
         public async Task<ActionResult<Appointment>> Post(Appointment appointment)
@@ -147,5 +150,49 @@ namespace Project.Advanced.Net.Controllers
 
             return NoContent();
         }
+
+
+
+        // Ny metod för att få bokningar för en specifik vecka
+        [HttpGet("week/{year}/{week}")]
+        public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointmentsByWeek(int year, int week)
+        {
+            var firstDayOfWeek = FirstDateOfWeek(year, week);
+            var lastDayOfWeek = firstDayOfWeek.AddDays(7).AddTicks(-1);
+            var appointments = await _appointmentRepository.GetAllAsync();
+            var weeklyAppointments = appointments.Where(a => a.Time >= firstDayOfWeek && a.Time <= lastDayOfWeek).ToList();
+            return Ok(weeklyAppointments);
+        }
+
+        // Ny metod för att få bokningar för en specifik månad
+        [HttpGet("month/{year}/{month}")]
+        public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointmentsByMonth(int year, int month)
+        {
+            var firstDayOfMonth = new DateTime(year, month, 1);
+            var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddTicks(-1);
+            var appointments = await _appointmentRepository.GetAllAsync();
+            var monthlyAppointments = appointments.Where(a => a.Time >= firstDayOfMonth && a.Time <= lastDayOfMonth).ToList();
+            return Ok(monthlyAppointments);
+        }
+
+        private DateTime FirstDateOfWeek(int year, int weekOfYear)
+        {
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = System.Globalization.CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            var weekNum = weekOfYear;
+            if (firstWeek <= 1)
+            {
+                weekNum -= 1;
+            }
+            var result = firstThursday.AddDays(weekNum * 7);
+            return result.AddDays(-3);
+        }
+
+
     }
 }
