@@ -53,210 +53,210 @@ namespace Project.Advanced.Net.Migrations
                             AppointmentId = 1,
                             CompanyId = 1,
                             CustomerId = 1,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3484)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8697)
                         },
                         new
                         {
                             AppointmentId = 2,
                             CompanyId = 1,
                             CustomerId = 1,
-                            Time = new DateTime(2024, 5, 16, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3536)
+                            Time = new DateTime(2024, 5, 18, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8747)
                         },
                         new
                         {
                             AppointmentId = 3,
                             CompanyId = 1,
                             CustomerId = 1,
-                            Time = new DateTime(2024, 5, 17, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3548)
+                            Time = new DateTime(2024, 5, 19, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8758)
                         },
                         new
                         {
                             AppointmentId = 4,
                             CompanyId = 1,
                             CustomerId = 2,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3558)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8767)
                         },
                         new
                         {
                             AppointmentId = 5,
                             CompanyId = 1,
                             CustomerId = 2,
-                            Time = new DateTime(2024, 5, 25, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3567)
+                            Time = new DateTime(2024, 5, 27, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8776)
                         },
                         new
                         {
                             AppointmentId = 6,
                             CompanyId = 1,
                             CustomerId = 2,
-                            Time = new DateTime(2024, 6, 4, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3576)
+                            Time = new DateTime(2024, 6, 6, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8786)
                         },
                         new
                         {
                             AppointmentId = 7,
                             CompanyId = 2,
                             CustomerId = 3,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3586)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8795)
                         },
                         new
                         {
                             AppointmentId = 8,
                             CompanyId = 2,
                             CustomerId = 3,
-                            Time = new DateTime(2024, 5, 30, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3594)
+                            Time = new DateTime(2024, 6, 1, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8803)
                         },
                         new
                         {
                             AppointmentId = 9,
                             CompanyId = 2,
                             CustomerId = 3,
-                            Time = new DateTime(2024, 6, 4, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3603)
+                            Time = new DateTime(2024, 6, 6, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8812)
                         },
                         new
                         {
                             AppointmentId = 10,
                             CompanyId = 3,
                             CustomerId = 4,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3613)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8822)
                         },
                         new
                         {
                             AppointmentId = 11,
                             CompanyId = 3,
                             CustomerId = 4,
-                            Time = new DateTime(2024, 5, 16, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3623)
+                            Time = new DateTime(2024, 5, 18, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8831)
                         },
                         new
                         {
                             AppointmentId = 12,
                             CompanyId = 3,
                             CustomerId = 4,
-                            Time = new DateTime(2024, 5, 17, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3633)
+                            Time = new DateTime(2024, 5, 19, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8860)
                         },
                         new
                         {
                             AppointmentId = 13,
                             CompanyId = 5,
                             CustomerId = 5,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3643)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8872)
                         },
                         new
                         {
                             AppointmentId = 14,
                             CompanyId = 5,
                             CustomerId = 5,
-                            Time = new DateTime(2024, 5, 25, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3653)
+                            Time = new DateTime(2024, 5, 27, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8881)
                         },
                         new
                         {
                             AppointmentId = 15,
                             CompanyId = 5,
                             CustomerId = 5,
-                            Time = new DateTime(2024, 5, 30, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3662)
+                            Time = new DateTime(2024, 6, 1, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8890)
                         },
                         new
                         {
                             AppointmentId = 16,
                             CompanyId = 5,
                             CustomerId = 6,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3672)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8900)
                         },
                         new
                         {
                             AppointmentId = 17,
                             CompanyId = 5,
                             CustomerId = 6,
-                            Time = new DateTime(2024, 5, 23, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3681)
+                            Time = new DateTime(2024, 5, 25, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8909)
                         },
                         new
                         {
                             AppointmentId = 18,
                             CompanyId = 5,
                             CustomerId = 6,
-                            Time = new DateTime(2024, 5, 17, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3692)
+                            Time = new DateTime(2024, 5, 19, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8919)
                         },
                         new
                         {
                             AppointmentId = 19,
                             CompanyId = 1,
                             CustomerId = 7,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3701)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8929)
                         },
                         new
                         {
                             AppointmentId = 20,
                             CompanyId = 1,
                             CustomerId = 7,
-                            Time = new DateTime(2024, 6, 9, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3710)
+                            Time = new DateTime(2024, 6, 11, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8939)
                         },
                         new
                         {
                             AppointmentId = 21,
                             CompanyId = 1,
                             CustomerId = 7,
-                            Time = new DateTime(2024, 6, 5, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3731)
+                            Time = new DateTime(2024, 6, 7, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8949)
                         },
                         new
                         {
                             AppointmentId = 22,
                             CompanyId = 2,
                             CustomerId = 8,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3753)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8958)
                         },
                         new
                         {
                             AppointmentId = 23,
                             CompanyId = 2,
                             CustomerId = 8,
-                            Time = new DateTime(2024, 5, 19, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3762)
+                            Time = new DateTime(2024, 5, 21, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8967)
                         },
                         new
                         {
                             AppointmentId = 24,
                             CompanyId = 2,
                             CustomerId = 8,
-                            Time = new DateTime(2024, 5, 23, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3843)
+                            Time = new DateTime(2024, 5, 25, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8976)
                         },
                         new
                         {
                             AppointmentId = 25,
                             CompanyId = 3,
                             CustomerId = 9,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3865)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8985)
                         },
                         new
                         {
                             AppointmentId = 26,
                             CompanyId = 3,
                             CustomerId = 9,
-                            Time = new DateTime(2024, 5, 19, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3876)
+                            Time = new DateTime(2024, 5, 21, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(8994)
                         },
                         new
                         {
                             AppointmentId = 27,
                             CompanyId = 3,
                             CustomerId = 9,
-                            Time = new DateTime(2024, 5, 24, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3886)
+                            Time = new DateTime(2024, 5, 26, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(9003)
                         },
                         new
                         {
                             AppointmentId = 28,
                             CompanyId = 4,
                             CustomerId = 10,
-                            Time = new DateTime(2024, 5, 15, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3896)
+                            Time = new DateTime(2024, 5, 17, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(9012)
                         },
                         new
                         {
                             AppointmentId = 29,
                             CompanyId = 4,
                             CustomerId = 10,
-                            Time = new DateTime(2024, 5, 16, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3906)
+                            Time = new DateTime(2024, 5, 18, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(9022)
                         },
                         new
                         {
                             AppointmentId = 30,
                             CompanyId = 4,
                             CustomerId = 10,
-                            Time = new DateTime(2024, 5, 17, 13, 57, 31, 753, DateTimeKind.Local).AddTicks(3915)
+                            Time = new DateTime(2024, 5, 19, 11, 2, 2, 83, DateTimeKind.Local).AddTicks(9030)
                         });
                 });
 

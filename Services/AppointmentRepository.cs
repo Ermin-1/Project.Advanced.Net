@@ -21,7 +21,7 @@ namespace Project.Advanced.Net.Services
             return await _context.Appointments
                 .Include(a => a.Customer)
                 .Include(a => a.Company)
-                .FirstOrDefaultAsync(a => a.CustomerId == id);
+                .FirstOrDefaultAsync(a => a.AppointmentId == id);
         }
 
 

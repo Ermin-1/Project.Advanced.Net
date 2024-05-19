@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Project.Advanced.Net.Services;
 using ProjectModels;
+using Project.Advanced.Net.DTOs;
+using Project.Advanced.Net.Mappers;
 
 namespace Project.Advanced.Net.Controllers
 {
@@ -17,7 +19,7 @@ namespace Project.Advanced.Net.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> Get(
+        public async Task<ActionResult<IEnumerable<CustomerSummaryDto>>> Get(
                string sortBy = "name",
                string filterBy = "",
                string filterValue = "")
@@ -40,46 +42,53 @@ namespace Project.Advanced.Net.Controllers
                 _ => customers.OrderBy(c => c.CustomerId).ToList(),
             };
 
-            return Ok(customers);
+            var customerSummaryDtos = customers.Select(c => c.ToSummaryDto());
+            return Ok(customerSummaryDtos);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Customer>> Get(int id)
+        public async Task<ActionResult<CustomerSummaryDto>> Get(int id)
         {
             var customer = await _customerRepository.GetByIdAsync(id);
             if (customer == null)
             {
                 return NotFound();
             }
-            return Ok(customer);
+            return Ok(customer.ToSummaryDto());
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Customer customer)
+        public async Task<ActionResult<CustomerDto>> Post([FromBody] CustomerDto customerDto)
         {
+            var customer = customerDto.ToEntity();
             await _customerRepository.AddAsync(customer);
-            return CreatedAtAction(nameof(Get), new { id = customer.CustomerId }, customer);
+            var createdCustomer = await _customerRepository.GetByIdAsync(customer.CustomerId); // Hämta den skapade kunden med alla uppdaterade fält
+            return CreatedAtAction(nameof(Get), new { id = customer.CustomerId }, createdCustomer.ToDto());
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] Customer customer)
+        public async Task<ActionResult<CustomerDto>> Put(int id, [FromBody] CustomerDto customerDto)
         {
-            if (id != customer.CustomerId)
+            if (id != customerDto.Id)
             {
                 return BadRequest();
             }
+            var customer = customerDto.ToEntity();
             await _customerRepository.UpdateAsync(customer);
-            return NoContent();
+            var updatedCustomer = await _customerRepository.GetByIdAsync(customer.CustomerId); // Hämta den uppdaterade kunden med alla uppdaterade fält
+            return Ok(updatedCustomer.ToDto());
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<CustomerSummaryDto>> Delete(int id)
         {
+            var customer = await _customerRepository.GetByIdAsync(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
             await _customerRepository.DeleteAsync(id);
-            return NoContent();
+            return Ok(customer.ToSummaryDto());
         }
-
-
-
     }
 }

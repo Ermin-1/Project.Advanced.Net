@@ -27,10 +27,10 @@ namespace Project.Advanced.Net.Services
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<AppointmentHistory>> GetAllAsync() 
+        public async Task<IEnumerable<AppointmentHistory>> GetAllAsync()
         {
             return await _context.AppointmentHistories.ToListAsync();
         }
+    }
 
-    }  
 }
