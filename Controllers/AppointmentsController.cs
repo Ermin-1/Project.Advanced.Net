@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Project.Advanced.Net.Data;
 using Project.Advanced.Net.Services;
 using ProjectModels;
@@ -189,33 +190,47 @@ namespace Project.Advanced.Net.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<AppointmentDto>> Delete(int id)
         {
-            try
+            using (var transaction = await _context.Database.BeginTransactionAsync())
             {
-                var appointment = await _appointmentRepository.GetByIdAsync(id);
-                if (appointment == null)
+                try
                 {
-                    return NotFound($"Appointment with ID {id} not found.");
+                    var appointment = await _appointmentRepository.GetByIdAsync(id);
+                    if (appointment == null)
+                    {
+                        return NotFound($"Appointment with ID {id} not found.");
+                    }
+
+                    // Skapa en ny historikpost
+                    var appointmentHistory = new AppointmentHistory
+                    {
+                        AppointmentId = appointment.AppointmentId,
+                        Action = "Deleted",
+                        Changes = "Appointment was deleted.",
+                        Timestamp = DateTime.Now
+                    };
+
+                    await _historyRepository.AddAsync(appointmentHistory); // Lägg till historikposten
+
+                    // Ta bort avtalet efter att historikposten har lagts till
+                    await _appointmentRepository.DeleteAsync(id);
+
+                    // Spara ändringarna i databasen
+                    await _context.SaveChangesAsync();
+
+                    // Bekräfta transaktionen
+                    await transaction.CommitAsync();
+
+                    return Ok(appointment.ToDto());
                 }
-
-                // Skapa en ny historikpost
-                var appointmentHistory = new AppointmentHistory
+                catch (Exception ex)
                 {
-                    AppointmentId = appointment.AppointmentId,
-                    Action = "Deleted",
-                    Changes = "Appointment was deleted.",
-                    Timestamp = DateTime.Now
-                };
-
-                await _historyRepository.AddAsync(appointmentHistory); // Lägg till historikposten
-                await _appointmentRepository.DeleteAsync(id);
-
-                return Ok(appointment.ToDto());
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+                    // Återställ transaktionen vid fel
+                    await transaction.RollbackAsync();
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+                }
             }
         }
+
 
         // Ny metod för att få bokningar för en specifik vecka
         [HttpGet("week/{year}/{week}")]
