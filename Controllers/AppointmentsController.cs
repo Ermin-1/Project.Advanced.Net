@@ -233,15 +233,17 @@ namespace Project.Advanced.Net.Controllers
 
 
         // Ny metod för att få bokningar för en specifik vecka
-        [HttpGet("week/{year}/{week}")]
-        public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointmentsByWeek(int year, int week)
+        [HttpGet("week/{year}/{week}/{companyId}")] // Lagt till {companyId} i URL-rutten
+        public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointmentsByWeek(int year, int week, int companyId) // Lagt till companyId som parameter
         {
             try
             {
                 var firstDayOfWeek = FirstDateOfWeek(year, week);
                 var lastDayOfWeek = firstDayOfWeek.AddDays(7).AddTicks(-1);
                 var appointments = await _appointmentRepository.GetAllAsync();
-                var weeklyAppointments = appointments.Where(a => a.Time >= firstDayOfWeek && a.Time <= lastDayOfWeek).ToList();
+                var weeklyAppointments = appointments
+                    .Where(a => a.Time >= firstDayOfWeek && a.Time <= lastDayOfWeek && a.CompanyId == companyId) // Lagt till filtrering på companyId
+                    .ToList();
                 var weeklyAppointmentDtos = weeklyAppointments.Select(a => a.ToDto());
                 return Ok(weeklyAppointmentDtos);
             }
@@ -252,15 +254,15 @@ namespace Project.Advanced.Net.Controllers
         }
 
         // Ny metod för att få bokningar för en specifik månad
-        [HttpGet("month/{year}/{month}")]
-        public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointmentsByMonth(int year, int month)
+        [HttpGet("month/{year}/{month}/{companyId}")]
+        public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointmentsByMonth(int year, int month, int companyId)
         {
             try
             {
                 var firstDayOfMonth = new DateTime(year, month, 1);
                 var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddTicks(-1);
                 var appointments = await _appointmentRepository.GetAllAsync();
-                var monthlyAppointments = appointments.Where(a => a.Time >= firstDayOfMonth && a.Time <= lastDayOfMonth).ToList();
+                var monthlyAppointments = appointments.Where(a => a.Time >= firstDayOfMonth && a.Time <= lastDayOfMonth && a.CompanyId == companyId).ToList();
                 var monthlyAppointmentDtos = monthlyAppointments.Select(a => a.ToDto());
                 return Ok(monthlyAppointmentDtos);
             }
@@ -269,6 +271,7 @@ namespace Project.Advanced.Net.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
             }
         }
+
 
         private DateTime FirstDateOfWeek(int year, int weekOfYear)
         {
