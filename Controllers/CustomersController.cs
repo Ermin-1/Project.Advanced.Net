@@ -139,6 +139,8 @@ namespace Project.Advanced.Net.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not delete customers");
             }
         }
+
+
         [Authorize(Policy = "AdminPolicy")]
         [Authorize(Policy = "CompanyPolicy")]
         [Authorize(Policy = "CustomerPolicy")]
