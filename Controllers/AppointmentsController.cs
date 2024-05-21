@@ -72,7 +72,7 @@ namespace Project.Advanced.Net.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Wrong inputs");
             }
         }
 
@@ -90,7 +90,7 @@ namespace Project.Advanced.Net.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Wrong inputs");
             }
         }
 
@@ -141,7 +141,7 @@ namespace Project.Advanced.Net.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Wrong inputs");
             }
         }
 
@@ -168,7 +168,7 @@ namespace Project.Advanced.Net.Controllers
 
                 await _appointmentRepository.UpdateAsync(existingAppointment);
 
-                // Log the update
+                // Logga upd
                 var history = new AppointmentHistory
                 {
                     AppointmentId = appointment.AppointmentId,
@@ -183,7 +183,7 @@ namespace Project.Advanced.Net.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Wrong inputs");
             }
         }
 
@@ -226,7 +226,7 @@ namespace Project.Advanced.Net.Controllers
                 {
                     // Återställ transaktionen vid fel
                     await transaction.RollbackAsync();
-                    return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not delete");
                 }
             }
         }
@@ -242,14 +242,14 @@ namespace Project.Advanced.Net.Controllers
                 var lastDayOfWeek = firstDayOfWeek.AddDays(7).AddTicks(-1);
                 var appointments = await _appointmentRepository.GetAllAsync();
                 var weeklyAppointments = appointments
-                    .Where(a => a.Time >= firstDayOfWeek && a.Time <= lastDayOfWeek && a.CompanyId == companyId) // Lagt till filtrering på companyId
+                    .Where(a => a.Time >= firstDayOfWeek && a.Time <= lastDayOfWeek && a.CompanyId == companyId) // Lagt till filtrering på companyId för uppgfit
                     .ToList();
                 var weeklyAppointmentDtos = weeklyAppointments.Select(a => a.ToDto());
                 return Ok(weeklyAppointmentDtos);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not get appointments");
             }
         }
 
@@ -259,36 +259,62 @@ namespace Project.Advanced.Net.Controllers
         {
             try
             {
+                // Skapa ett DateTime-objekt för den första dagen i den angivna månaden
                 var firstDayOfMonth = new DateTime(year, month, 1);
+
+                // Skapa ett DateTime-objekt för den sista dagen i den angivna månaden
                 var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddTicks(-1);
+
+                // Hämta alla bokningar från databasen
                 var appointments = await _appointmentRepository.GetAllAsync();
+
+                // Filtrera bokningarna för att få de som faller inom den angivna månaden och tillhör den angivna företaget
                 var monthlyAppointments = appointments.Where(a => a.Time >= firstDayOfMonth && a.Time <= lastDayOfMonth && a.CompanyId == companyId).ToList();
+
+                // Konvertera filtrerade bokningar till DTO-objekt
                 var monthlyAppointmentDtos = monthlyAppointments.Select(a => a.ToDto());
+
+                // Returnera de filtrerade bokningarna som en lista med DTO-objekt
                 return Ok(monthlyAppointmentDtos);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: {ex.Message}");
+              
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not get appointments");
             }
         }
 
-
+        // Privat metod för att få det första datumet i en vecka för ett  år och veckonummer
         private DateTime FirstDateOfWeek(int year, int weekOfYear)
         {
+            // Skapa ett DateTime-objekt för den 1 januari det givna året
             DateTime jan1 = new DateTime(year, 1, 1);
+
+            // Beräkna hur många dagar det är till den första torsdagen i året
             int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
 
+            // Lägg till offseten till 1 januari för att få den första torsdagen
             DateTime firstThursday = jan1.AddDays(daysOffset);
+
+            // Hämta kalendern 
             var cal = System.Globalization.CultureInfo.CurrentCulture.Calendar;
+
+            // Hämta veckonumret för den första torsdagen pga ISO standard
             int firstWeek = cal.GetWeekOfYear(firstThursday, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
+            // Justera veckonumret om den första veckan inte är vecka 1
             var weekNum = weekOfYear;
             if (firstWeek <= 1)
             {
                 weekNum -= 1;
             }
+
+            // Lägg till veckonumret gånger 7 dagar till den första torsdagen för att få rätt vecka
             var result = firstThursday.AddDays(weekNum * 7);
+
+            // Justera tillbaka tre dagar för att få måndagen i den veckan
             return result.AddDays(-3);
         }
+
     }
 }
