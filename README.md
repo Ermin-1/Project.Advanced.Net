@@ -25,15 +25,7 @@ Den här applikationen är byggd med .NET och följer en lagerbaserad arkitektur
 **Nackdelar**:
 - Kräver mer kod och mappning, vilket kan öka utvecklingstiden.
 
-#### 2. Lagerbaserad Arkitektur
-
-**Val**: Den lagerbaserade arkitekturen ger en tydlig separation av ansvar, vilket gör det enklare att hantera komplexitet och förändringar.
-
-**Fördelar**:
-- Ökar modulariteten och underhållbarheten.
-- Gör det möjligt att enkelt byta ut eller uppdatera enskilda lager utan att påverka resten av applikationen.
-
-#### 3. Användning av Repository Pattern
+#### 2. Användning av Repository Pattern
 
 **Val**: Repository Pattern används för att hantera dataåtkomst, vilket gör det möjligt att abstrahera datalagret från resten av applikationen.
 
