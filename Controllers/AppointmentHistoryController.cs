@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Project.Advanced.Net.Data;
 using ProjectModels;
@@ -18,6 +19,7 @@ namespace Project.Advanced.Net.Controllers
         }
 
         // Hämta alla historikposter
+        [Authorize(Policy = "AdminPolicy")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppointmentHistory>>> Get()
         {
@@ -26,6 +28,7 @@ namespace Project.Advanced.Net.Controllers
         }
 
         // Hämta historikposter för en specifik bokning
+        [Authorize(Policy = "AdminPolicy")]
         [HttpGet("{appointmentId}")]
         public async Task<ActionResult<IEnumerable<AppointmentHistory>>> GetByAppointmentId(int appointmentId)
         {

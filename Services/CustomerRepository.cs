@@ -46,6 +46,15 @@ namespace Project.Advanced.Net.Services
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
         }
-     
+
+        public async Task<Customer> GetCustomerWithAppointments(int id)
+        {
+            var customer = await _context.Customers
+                .Include(c => c.Appointments)
+                .FirstOrDefaultAsync(c => c.CustomerId == id);
+
+            return customer;
+        }
+
     }
 }

@@ -4,11 +4,17 @@ using Microsoft.IdentityModel.Tokens;
 using Project.Advanced.Net.Data;
 using Project.Advanced.Net.Services;
 using ProjectModels;
-using Projekt___Avancerad_.NET.Data;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Projekt___Avancerad_.NET.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Register repositories
+builder.Services.AddScoped<IRepository<Customer>, CustomerRepository>();
+builder.Services.AddScoped<IRepository<Appointment>, AppointmentRepository>();
+builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();
+builder.Services.AddScoped<IAppointmentHistoryRepository, AppointmentHistoryRepository>();
 
 builder.Services.AddControllers();
 
@@ -31,19 +37,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     };
                 });
 
-// Register repositories
-builder.Services.AddScoped<IRepository<Customer>, CustomerRepository>();
-builder.Services.AddScoped<IRepository<Appointment>, AppointmentRepository>();
-builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();
-builder.Services.AddScoped<IAppointmentHistoryRepository, AppointmentHistoryRepository>();
 
 
-//SQL DB Context
+// SQL DB Context
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
-var app = builder.Build();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+    options.AddPolicy("CompanyPolicy", policy => policy.RequireRole("Company"));
+});
 
+var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
@@ -52,7 +59,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 
 app.UseAuthentication();
 app.UseAuthorization();

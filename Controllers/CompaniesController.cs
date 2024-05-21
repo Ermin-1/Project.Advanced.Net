@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Project.Advanced.Net.Services;
 using ProjectModels;
@@ -19,6 +20,8 @@ namespace Project.Advanced.Net.Controllers
         {
             _companyRepository = companyRepository;
         }
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Company>>> Get(
@@ -61,6 +64,8 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> Get(int id)
         {
@@ -79,6 +84,8 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] Company company)
         {
@@ -93,6 +100,8 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] Company company)
         {
@@ -111,6 +120,8 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Project.Advanced.Net.Services;
 using ProjectModels;
 using Project.Advanced.Net.DTOs;
 using Project.Advanced.Net.Mappers;
+using Microsoft.EntityFrameworkCore;
+using Projekt___Avancerad_.NET.Data;
 
 namespace Project.Advanced.Net.Controllers
 {
@@ -11,12 +14,17 @@ namespace Project.Advanced.Net.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly IRepository<Customer> _customerRepository;
+        private readonly AppDbContext _context; // Lägg till ApplicationDbContext som beroende
 
-        public CustomersController(IRepository<Customer> customerRepository)
+        public CustomersController(IRepository<Customer> customerRepository, AppDbContext context)
         {
             _customerRepository = customerRepository;
+            _context = context;
         }
 
+
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CustomerSummaryDto>>> Get(
                string sortBy = "name",
@@ -52,6 +60,8 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CustomerPolicy")]
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerSummaryDto>> Get(int id)
         {
@@ -70,6 +80,7 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpPost]
         public async Task<ActionResult<CustomerDto>> Post([FromBody] CustomerDto customerDto)
         {
@@ -86,6 +97,9 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
+        [Authorize(Policy = "CustomerPolicy")]
         [HttpPut("{id}")]
         public async Task<ActionResult<CustomerDto>> Put(int id, [FromBody] CustomerDto customerDto)
         {
@@ -106,6 +120,7 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<CustomerSummaryDto>> Delete(int id)
         {
@@ -124,5 +139,31 @@ namespace Project.Advanced.Net.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not delete customers");
             }
         }
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
+        [Authorize(Policy = "CustomerPolicy")]
+        [HttpGet("{id}/appointments")]
+        public async Task<ActionResult<Customer>> GetCustomerWithAppointments(int id)
+        {
+            try
+            {
+                var customer = await _context.Customers
+                    .Include(c => c.Appointments)
+                    .FirstOrDefaultAsync(c => c.CustomerId == id);
+
+                if (customer == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(customer);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not get customer with appointments");
+            }
+        }
     }
+
 }
+

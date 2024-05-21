@@ -6,6 +6,7 @@ using ProjectModels;
 using Projekt___Avancerad_.NET.Data;
 using Project.Advanced.Net.DTOs;
 using Project.Advanced.Net.Mappers;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Project.Advanced.Net.Controllers
@@ -25,6 +26,8 @@ namespace Project.Advanced.Net.Controllers
             _context = context;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppointmentDto>>> Get(
             string sortBy = "date",
@@ -76,6 +79,8 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppointmentDto>> Get(int id)
         {
@@ -94,6 +99,9 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
+        [Authorize(Policy = "CustomerPolicy")]
         [HttpPost]
         public async Task<ActionResult<AppointmentDto>> Post([FromBody] AppointmentDto appointmentDto)
         {
@@ -145,6 +153,10 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
+        [Authorize(Policy = "CustomerPolicy")]
         [HttpPut("{id}")]
         public async Task<ActionResult<AppointmentDto>> Put(int id, [FromBody] AppointmentDto appointmentDto)
         {
@@ -187,6 +199,10 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
+
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
+        [Authorize(Policy = "CustomerPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<AppointmentDto>> Delete(int id)
         {
@@ -233,6 +249,9 @@ namespace Project.Advanced.Net.Controllers
 
 
         // Ny metod för att få bokningar för en specifik vecka
+
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpGet("week/{year}/{week}/{companyId}")] // Lagt till {companyId} i URL-rutten
         public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointmentsByWeek(int year, int week, int companyId) // Lagt till companyId som parameter
         {
@@ -254,6 +273,8 @@ namespace Project.Advanced.Net.Controllers
         }
 
         // Ny metod för att få bokningar för en specifik månad
+        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "CompanyPolicy")]
         [HttpGet("month/{year}/{month}/{companyId}")]
         public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointmentsByMonth(int year, int month, int companyId)
         {
@@ -285,6 +306,7 @@ namespace Project.Advanced.Net.Controllers
         }
 
         // Privat metod för att få det första datumet i en vecka för ett  år och veckonummer
+        [Authorize(Policy = "AdminPolicy")]
         private DateTime FirstDateOfWeek(int year, int weekOfYear)
         {
             // Skapa ett DateTime-objekt för den 1 januari det givna året
