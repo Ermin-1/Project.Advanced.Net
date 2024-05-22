@@ -6,6 +6,7 @@ using Project.Advanced.Net.DTOs;
 using Project.Advanced.Net.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Projekt___Avancerad_.NET.Data;
+using Project.Advanced.Net.Models;
 
 namespace Project.Advanced.Net.Controllers
 {
@@ -15,11 +16,13 @@ namespace Project.Advanced.Net.Controllers
     {
         private readonly IRepository<Customer> _customerRepository;
         private readonly AppDbContext _context; // Lägg till ApplicationDbContext som beroende
+        private readonly AppDbContext _loginInfo; // Lägg till ApplicationDbContext som beroende
 
-        public CustomersController(IRepository<Customer> customerRepository, AppDbContext context)
+        public CustomersController(IRepository<Customer> customerRepository, AppDbContext context, AppDbContext loginInfo)
         {
             _customerRepository = customerRepository;
             _context = context;
+            _loginInfo = loginInfo;
         }
 
 
@@ -86,12 +89,23 @@ namespace Project.Advanced.Net.Controllers
             {
                 var customer = customerDto.ToEntity();
                 await _customerRepository.AddAsync(customer);
-                var createdCustomer = await _customerRepository.GetByIdAsync(customer.CustomerId); // Hämta den skapade kunden med alla uppdaterade fält
+
+                // Skapa LoginInfo för kunden
+                var loginInfo = new LoginInfo
+                {
+                    EMail = customer.Email,
+                    Password = "defaultpassword", // eller generera ett starkt lösenord
+                    Role = "customer",
+                    CustomerId = customer.CustomerId
+                };
+                await _loginInfo.AddAsync(loginInfo);
+
+                var createdCustomer = await _customerRepository.GetByIdAsync(customer.CustomerId);
                 return CreatedAtAction(nameof(Get), new { id = customer.CustomerId }, createdCustomer.ToDto());
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not post customers");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not post customers. Error: {ex.Message}");
             }
         }
 

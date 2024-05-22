@@ -11,7 +11,7 @@ namespace Project.Advanced.Net.Services
         {
             _appDbContext = appDbContext;
         }
-
+ 
         public async Task<LoginInfo> Add(LoginInfo entity)
         {
             var result = await _appDbContext.LoginInfos.AddAsync(entity);
@@ -19,10 +19,6 @@ namespace Project.Advanced.Net.Services
             return result.Entity;
         }
 
-        public Task AddAsync(LoginInfo entity)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<LoginInfo> Delete(int id)
         {

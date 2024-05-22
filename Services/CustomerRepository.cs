@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project.Advanced.Net.Models;
 using ProjectModels;
 using Projekt___Avancerad_.NET.Data;
 using System.Reflection.Metadata.Ecma335;
@@ -12,6 +13,10 @@ namespace Project.Advanced.Net.Services
         {
             _context = context;
         }
+
+
+ 
+
 
         public async Task AddAsync(Customer customer)
         {

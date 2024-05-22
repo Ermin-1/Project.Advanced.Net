@@ -11,5 +11,6 @@ namespace Project.Advanced.Net.Models
         public int CompanyId { get; set; }
         public int CustomerId { get; set; }
         public string Role { get; set; }
+
     }
 }
