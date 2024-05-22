@@ -12,7 +12,14 @@ namespace Project.Advanced.Net.Mappers
                 Id = appointment.AppointmentId,
                 Date = appointment.Time,
                 CustomerId = appointment.CustomerId,
-                CompanyId = appointment.CompanyId
+                FirstName = appointment.Customer.FirstName,
+                LastName = appointment.Customer.LastName,
+                Address = appointment.Customer.Address,
+                PhoneNumber = appointment.Customer.PhoneNumber,
+                Email = appointment.Customer.Email,
+                CompanyId = appointment.CompanyId,
+                Name = appointment.Company.Name,
+                CompanyEmail = appointment.Company.Email
             };
         }
 

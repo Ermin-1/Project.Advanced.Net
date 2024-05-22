@@ -139,7 +139,6 @@ namespace Projekt___Avancerad_.NET.Data
             {
                 Id = 1,
                 EMail = "ermin.husic@example.com",
-               
                 Password = "password1",
                 Role = "customer",
                 CustomerId = 1

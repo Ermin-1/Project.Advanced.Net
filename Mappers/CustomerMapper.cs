@@ -14,7 +14,8 @@ namespace Project.Advanced.Net.Mappers
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
                 Address = customer.Address,
-                PhoneNumber = customer.PhoneNumber
+                PhoneNumber = customer.PhoneNumber,
+                Email = customer.Email
             };
         }
 
@@ -26,7 +27,8 @@ namespace Project.Advanced.Net.Mappers
                 FirstName = customerDto.FirstName,
                 LastName = customerDto.LastName,
                 Address = customerDto.Address,
-                PhoneNumber = customerDto.PhoneNumber
+                PhoneNumber = customerDto.PhoneNumber,
+                  Email = customerDto.Email
             };
         }
 
