@@ -65,7 +65,8 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Register repositories
+// Register repositorie
+
 builder.Services.AddScoped<IRepository<Customer>, CustomerRepository>();
 builder.Services.AddScoped<IRepository<Appointment>, AppointmentRepository>();
 builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();
