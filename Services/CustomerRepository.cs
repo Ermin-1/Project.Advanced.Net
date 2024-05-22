@@ -14,8 +14,29 @@ namespace Project.Advanced.Net.Services
             _context = context;
         }
 
+        public async Task<CustomerDto> CreateCustomerAsync(CustomerDto customerDto)
+        {
+            // Map fields from CustomerDto to Customer entity
+            var customer = new Customer
+            {
+                FirstName = customerDto.FirstName,
+                LastName = customerDto.LastName,
+                Email = customerDto.Email,
+                Address = customerDto.Address,
+                PhoneNumber = customerDto.PhoneNumber,
+                
+                // Add other necessary fields here...
+            };
 
- 
+            _context.Customers.Add(customer);
+            await _context.SaveChangesAsync();
+
+            // Map fields from Customer entity back to CustomerDto
+            customerDto.Id = customer.CustomerId;
+            return customerDto;
+        }
+
+
 
 
         public async Task AddAsync(Customer customer)

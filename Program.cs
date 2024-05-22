@@ -8,6 +8,7 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using Projekt___Avancerad_.NET.Data;
 using Projekt_Avancerad_.NET.Authentication;
+using Project.Advanced.Net.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -91,7 +92,6 @@ builder.Services.AddScoped<IRepository<Customer>, CustomerRepository>();
 builder.Services.AddScoped<IRepository<Appointment>, AppointmentRepository>();
 builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();
 builder.Services.AddScoped<IAppointmentHistoryRepository, AppointmentHistoryRepository>();
-
 builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();

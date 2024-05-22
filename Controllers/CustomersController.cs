@@ -7,6 +7,7 @@ using Project.Advanced.Net.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Projekt___Avancerad_.NET.Data;
 using Project.Advanced.Net.Models;
+using Projekt_Avancerad_.NET.Authentication;
 
 namespace Project.Advanced.Net.Controllers
 {
@@ -16,13 +17,13 @@ namespace Project.Advanced.Net.Controllers
     {
         private readonly IRepository<Customer> _customerRepository;
         private readonly AppDbContext _context; // Lägg till ApplicationDbContext som beroende
-        private readonly AppDbContext _loginInfo; // Lägg till ApplicationDbContext som beroende
+        private readonly IUserService _userService;
 
-        public CustomersController(IRepository<Customer> customerRepository, AppDbContext context, AppDbContext loginInfo)
+        public CustomersController(IRepository<Customer> customerRepository, AppDbContext context, IUserService userService)
         {
             _customerRepository = customerRepository;
             _context = context;
-            _loginInfo = loginInfo;
+            _userService = userService;
         }
 
 
@@ -87,21 +88,29 @@ namespace Project.Advanced.Net.Controllers
         {
             try
             {
-                var customer = customerDto.ToEntity();
-                await _customerRepository.AddAsync(customer);
+                var company = customerDto.ToEntity();
+
+
+               await _customerRepository.AddAsync(company);
+
 
                 // Skapa LoginInfo för kunden
                 var loginInfo = new LoginInfo
                 {
-                    EMail = customer.Email,
+                    EMail = company.Email,
                     Password = "defaultpassword", // eller generera ett starkt lösenord
-                    Role = "customer",
-                    CustomerId = customer.CustomerId
+                    Role = "company",
+                    CustomerId = company.CustomerId,
+                   
+                    
                 };
-                await _loginInfo.AddAsync(loginInfo);
 
-                var createdCustomer = await _customerRepository.GetByIdAsync(customer.CustomerId);
-                return CreatedAtAction(nameof(Get), new { id = customer.CustomerId }, createdCustomer.ToDto());
+               await _context.LoginInfos.AddAsync(loginInfo);
+               await _context.SaveChangesAsync();
+
+       
+                var createdCustomer = await _customerRepository.GetByIdAsync(company.CustomerId);
+                return CreatedAtAction(nameof(Get), new { id = company.CustomerId }, createdCustomer.ToDto());
             }
             catch (Exception ex)
             {
@@ -158,7 +167,7 @@ namespace Project.Advanced.Net.Controllers
             try
             {
                 var customer = await _context.Customers
-                    .Include(c => c.Appointments)
+                    .Include(c => c.Appointments).ThenInclude(x => x.Company)
                     .FirstOrDefaultAsync(c => c.CustomerId == id);
 
                 if (customer == null)
@@ -166,11 +175,11 @@ namespace Project.Advanced.Net.Controllers
                     return NotFound();
                 }
 
-                return Ok(customer);
+                return Ok(customer.Appointments);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not get customer with appointments");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not get company with appointments");
             }
         }
     }

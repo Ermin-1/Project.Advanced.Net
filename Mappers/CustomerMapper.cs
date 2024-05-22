@@ -19,6 +19,16 @@ namespace Project.Advanced.Net.Mappers
             };
         }
 
+        public static CompanyDto ToDto(this Company customer)
+        {
+            return new CompanyDto
+            {
+                Id = customer.CompanyId,
+                Name = customer.Name,
+                Email = customer.Email
+            };
+        }
+
         public static Customer ToEntity(this CustomerDto customerDto)
         {
             return new Customer
@@ -29,6 +39,16 @@ namespace Project.Advanced.Net.Mappers
                 Address = customerDto.Address,
                 PhoneNumber = customerDto.PhoneNumber,
                   Email = customerDto.Email
+            };
+        }
+
+        public static Company ToEntity(this CompanyDto customerDto)
+        {
+            return new Company
+            {
+                CompanyId = customerDto.Id,
+                Name = customerDto.Name,
+                Email = customerDto.Email
             };
         }
 

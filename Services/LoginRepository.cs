@@ -4,7 +4,7 @@ using ProjectModels;
 using Projekt___Avancerad_.NET.Data;
 namespace Project.Advanced.Net.Services
 {
-    public class LoginRepository 
+    public class LoginRepository
     {
         private AppDbContext _appDbContext;
         public LoginRepository(AppDbContext appDbContext)

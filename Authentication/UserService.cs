@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project.Advanced.Net.Models;
 using Projekt___Avancerad_.NET.Data;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,12 @@ namespace Projekt_Avancerad_.NET.Authentication
         {
             var user = await _appDbContext.LoginInfos.FirstOrDefaultAsync(u => u.EMail == username && u.Password == password);
             return user != null;
+        }
+
+        public async Task CreateUserAsync(LoginInfo loginInfo)
+        {
+            _appDbContext.LoginInfos.Add(loginInfo);
+            await _appDbContext.SaveChangesAsync();
         }
     }
 }

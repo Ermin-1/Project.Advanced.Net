@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Project.Advanced.Net.Models;
 using Project.Advanced.Net.Services;
 using ProjectModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Project.Advanced.Net.Mappers;
+using Projekt___Avancerad_.NET.Data;
 
 namespace Project.Advanced.Net.Controllers
 {
@@ -15,10 +19,14 @@ namespace Project.Advanced.Net.Controllers
     public class CompaniesController : ControllerBase
     {
         private readonly IRepository<Company> _companyRepository;
+        private readonly AppDbContext _context;
 
-        public CompaniesController(IRepository<Company> companyRepository)
+        public CompaniesController(
+            IRepository<Company> companyRepository,
+             AppDbContext context)
         {
             _companyRepository = companyRepository;
+            _context = context;
         }
 
         [Authorize(Policy = "AdminOrCompanyPolicy")]
@@ -84,18 +92,35 @@ namespace Project.Advanced.Net.Controllers
 
         [Authorize(Policy = "AdminOrCompanyPolicy")]
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Company company)
+        public async Task<ActionResult<CompanyDto>> Post([FromBody] CompanyDto companyDto)
         {
             try
             {
+                var company = companyDto.ToEntity();
+
                 await _companyRepository.AddAsync(company);
-                return CreatedAtAction(nameof(Get), new { id = company.CompanyId }, company);
+
+                // Skapa LoginInfo för företaget
+                var loginInfo = new LoginInfo
+                {
+                    EMail = company.Email,
+                    Password = "defaultpassword", // eller generera ett starkt lösenord
+                    Role = "company",
+                    CompanyId = company.CompanyId
+                };
+
+                await _context.LoginInfos.AddAsync(loginInfo);
+                await _context.SaveChangesAsync();
+
+                var createdCompany = await _companyRepository.GetByIdAsync(company.CompanyId);
+                return CreatedAtAction(nameof(Get), new { id = company.CompanyId }, createdCompany.ToDto());
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: could not post company");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Internal server error: Could not post company. Error: {ex.Message}");
             }
         }
+
 
         [Authorize(Policy = "AdminOrCompanyPolicy")]
         [HttpPut("{id}")]
