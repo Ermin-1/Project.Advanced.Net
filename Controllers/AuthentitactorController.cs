@@ -1,66 +1,59 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Projekt_Avancerad_.NET.Authentication;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-[Route("api/[controller]")]
+
 [ApiController]
+[Route("[controller]")]
 public class AuthentitactorController : ControllerBase
 {
+    private readonly IUserService _userService;
     private readonly IConfiguration _configuration;
 
-    public AuthentitactorController(IConfiguration configuration)
+    public AuthentitactorController(IUserService userService, IConfiguration configuration)
     {
+        _userService = userService;
         _configuration = configuration;
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] UserLogin userLogin)
+    public async Task<IActionResult> Login([FromBody] UserLogin request)
     {
-        if (userLogin == null)
-        {
-            return BadRequest("Invalid client request");
-        }
+        var userIsValid = await _userService.ValidateCredentialsAsync(request.Username, request.Password);
 
-        var role = string.Empty;
-
-        if (userLogin.Username == "admin" && userLogin.Password == "adminpassword")
-        {
-            role = "Admin";
-        }
-        else if (userLogin.Username == "user" && userLogin.Password == "userpassword")
-        {
-            role = "User";
-        }
-        else if (userLogin.Username == "company" && userLogin.Password == "companypassword")
-        {
-            role = "Company";
-        }
-        else
-        {
+        if (!userIsValid)
             return Unauthorized();
-        }
 
-        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-        var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-
-        var claims = new List<Claim>
+        var roles = await _userService.GetRolesAsync(request.Username);
+        var authClaims = new[]
         {
-            new Claim(ClaimTypes.Name, userLogin.Username),
-            new Claim(ClaimTypes.Role, role)
+            new Claim(JwtRegisteredClaimNames.Sub, request.Username),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.Name, request.Username),
         };
 
-        var tokeOptions = new JwtSecurityToken(
-            issuer: _configuration["Jwt:Issuer"],
-            audience: _configuration["Jwt:Audience"],
-            claims: claims,
-            expires: DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpiryInMinutes"])),
-            signingCredentials: signinCredentials
+        foreach (var role in roles)
+        {
+            authClaims = authClaims.Append(new Claim(ClaimTypes.Role, role)).ToArray();
+        }
+
+        var authSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]));
+
+        var token = new JwtSecurityToken(
+            expires: DateTime.Now.AddHours(3),
+            claims: authClaims,
+            signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
         );
 
-        var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-        return Ok(new { Token = tokenString });
+        return Ok(new
+        {
+            token = new JwtSecurityTokenHandler().WriteToken(token),
+            expiration = token.ValidTo
+        });
     }
 }
 

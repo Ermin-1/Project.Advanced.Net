@@ -5,41 +5,64 @@ using Project.Advanced.Net.Data;
 using Project.Advanced.Net.Services;
 using ProjectModels;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Projekt___Avancerad_.NET.Data;
+using Projekt_Avancerad_.NET.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+
+// JWT Authentication
+var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppointmentAPI", Version = "v1" });
-    c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+    c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
         Type = SecuritySchemeType.Http,
-        Scheme = "basic",
+        Scheme = "bearer",
+        BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Login Authorization",
+        Description = "JWT Authorization header using the Bearer scheme.",
     });
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
                 {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "basic"
-                            }
-                        },
-                        new string[]{}
-                    }
-                });
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
 });
 
 // Register repositories
@@ -48,71 +71,31 @@ builder.Services.AddScoped<IRepository<Appointment>, AppointmentRepository>();
 builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();
 builder.Services.AddScoped<IAppointmentHistoryRepository, AppointmentHistoryRepository>();
 
-builder.Services.AddControllers();
-
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen(c =>
-//{
-//    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-//    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-//    {
-//        In = ParameterLocation.Header,
-//        Description = "Please enter into field the word 'Bearer' followed by a space and the JWT value",
-//        Name = "Authorization",
-//        Type = SecuritySchemeType.ApiKey
-//    });
-//    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-//    {
-//        {
-//            new OpenApiSecurityScheme
-//            {
-//                Reference = new OpenApiReference
-//                {
-//                    Type = ReferenceType.SecurityScheme,
-//                    Id = "Bearer"
-//                }
-//            },
-//            new string[] { }
-//        }
-//    });
-//});
-
-// Configure JWT Authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                        ValidAudience = builder.Configuration["Jwt:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-                    };
-                });
-
-// SQL DB Context
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
-
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("CustomerPolicy", policy => policy.RequireRole("Customer"));
-    options.AddPolicy("CompanyPolicy", policy => policy.RequireRole("Company"));
-});
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1"));
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AppointmentAPI v1");
+        c.RoutePrefix = string.Empty; // This makes Swagger UI accessible at the app's root
+    });
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();

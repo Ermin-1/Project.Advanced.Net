@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projekt___Avancerad_.NET.Data;
-
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Projekt_Avancerad_.NET.Authentication
 {
     public class UserService : IUserService
     {
         private readonly AppDbContext _appDbContext;
+
         public UserService(AppDbContext context)
         {
             _appDbContext = context;
@@ -15,7 +18,7 @@ namespace Projekt_Avancerad_.NET.Authentication
         public async Task<IEnumerable<string>> GetRolesAsync(string username)
         {
             var user = await _appDbContext.LoginInfos.FirstOrDefaultAsync(u => u.EMail == username);
-            if (user != null) { }
+            if (user != null)
             {
                 var roles = new List<string> { user.Role };
                 return roles;
@@ -26,11 +29,7 @@ namespace Projekt_Avancerad_.NET.Authentication
         public async Task<bool> ValidateCredentialsAsync(string username, string password)
         {
             var user = await _appDbContext.LoginInfos.FirstOrDefaultAsync(u => u.EMail == username && u.Password == password);
-            if (user != null)
-            {
-                return true;
-            }
-            return false;
+            return user != null;
         }
     }
 }
