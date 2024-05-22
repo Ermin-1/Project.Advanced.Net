@@ -23,8 +23,7 @@ namespace Project.Advanced.Net.Controllers
         }
 
 
-        [Authorize(Policy = "AdminPolicy")]
-        [Authorize(Policy = "CompanyPolicy")]
+        [Authorize(Policy = "AdminCompanyOrCustomerPolicy")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CustomerSummaryDto>>> Get(
                string sortBy = "name",
@@ -60,8 +59,7 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
-        [Authorize(Policy = "AdminPolicy")]
-        [Authorize(Policy = "CustomerPolicy")]
+        [Authorize(Policy = "AdminCompanyOrCustomerPolicy")]
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerSummaryDto>> Get(int id)
         {
@@ -80,7 +78,7 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
-        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "AdminCompanyOrCustomerPolicy")]
         [HttpPost]
         public async Task<ActionResult<CustomerDto>> Post([FromBody] CustomerDto customerDto)
         {
@@ -97,9 +95,7 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
-        [Authorize(Policy = "AdminPolicy")]
-        [Authorize(Policy = "CompanyPolicy")]
-        [Authorize(Policy = "CustomerPolicy")]
+        [Authorize(Policy = "AdminCompanyOrCustomerPolicy")]
         [HttpPut("{id}")]
         public async Task<ActionResult<CustomerDto>> Put(int id, [FromBody] CustomerDto customerDto)
         {
@@ -120,7 +116,7 @@ namespace Project.Advanced.Net.Controllers
             }
         }
 
-        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Policy = "AdminCompanyOrCustomerPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<CustomerSummaryDto>> Delete(int id)
         {
@@ -141,9 +137,7 @@ namespace Project.Advanced.Net.Controllers
         }
 
 
-        [Authorize(Policy = "AdminPolicy")]
-        [Authorize(Policy = "CompanyPolicy")]
-        [Authorize(Policy = "CustomerPolicy")]
+        [Authorize(Policy = "AdminCompanyOrCustomerPolicy")]
         [HttpGet("{id}/appointments")]
         public async Task<ActionResult<Customer>> GetCustomerWithAppointments(int id)
         {

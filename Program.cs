@@ -44,6 +44,16 @@ builder.Services.AddAuthorization(options =>
         policy.RequireRole("company"));
     options.AddPolicy("CustomerPolicy", policy =>
         policy.RequireRole("customer"));
+
+    // Kombinerad policy för admin och company
+    options.AddPolicy("AdminOrCompanyPolicy", policy =>
+        policy.RequireAssertion(context =>
+            context.User.IsInRole("admin") || context.User.IsInRole("company")));
+
+    // Kombinerad policy för admin, company och customer
+    options.AddPolicy("AdminCompanyOrCustomerPolicy", policy =>
+        policy.RequireAssertion(context =>
+            context.User.IsInRole("admin") || context.User.IsInRole("company") || context.User.IsInRole("customer")));
 });
 
 builder.Services.AddControllers();
