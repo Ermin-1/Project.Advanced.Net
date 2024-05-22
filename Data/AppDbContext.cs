@@ -279,7 +279,7 @@ namespace Projekt___Avancerad_.NET.Data
                 LoginId = 17,
                 EMail = "admin@apple.com",
                 Password = "password1",
-                Role = "admin",
+                Role = "company",
                 CompanyId = 1
             });
 
@@ -288,7 +288,7 @@ namespace Projekt___Avancerad_.NET.Data
                 LoginId = 12,
                 EMail = "admin@samsung.com",
                 Password = "password2",
-                Role = "admin",
+                Role = "company",
                 CompanyId = 2
             });
 
@@ -297,7 +297,7 @@ namespace Projekt___Avancerad_.NET.Data
                 LoginId = 13,
                 EMail = "admin@xiaomi.com",
                 Password = "password3",
-                Role = "admin",
+                Role = "company",
                 CompanyId = 3
             });
 
@@ -306,7 +306,7 @@ namespace Projekt___Avancerad_.NET.Data
                 LoginId = 14,
                 EMail = "admin@google.com",
                 Password = "password4",
-                Role = "admin",
+                Role = "company",
                 CompanyId = 4
             });
 
@@ -315,7 +315,7 @@ namespace Projekt___Avancerad_.NET.Data
                 LoginId = 15,
                 EMail = "admin@microsoft.com",
                 Password = "password5",
-                Role = "admin",
+                Role = "company",
                 CompanyId = 5
             });
 
@@ -324,7 +324,7 @@ namespace Projekt___Avancerad_.NET.Data
                 LoginId = 16,
                 EMail = "admin@amazon.com",
                 Password = "password6",
-                Role = "admin",
+                Role = "company",
                 CompanyId = 6
             });
 

@@ -100,7 +100,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+    options.AddPolicy("CustomerPolicy", policy => policy.RequireRole("Customer"));
     options.AddPolicy("CompanyPolicy", policy => policy.RequireRole("Company"));
 });
 
