@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project.Advanced.Net.Models;
 using ProjectModels;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -136,8 +137,9 @@ namespace Projekt___Avancerad_.NET.Data
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 1,
+                Id = 1,
                 EMail = "ermin.husic@example.com",
+               
                 Password = "password1",
                 Role = "customer",
                 CustomerId = 1
@@ -145,92 +147,102 @@ namespace Projekt___Avancerad_.NET.Data
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 2,
+                Id = 2,
                 EMail = "oskar.johansson@example.com",
                 Password = "password2",
                 Role = "customer",
-                CustomerId = 2
+                CustomerId = 2,
+              
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 3,
+                Id = 3,
                 EMail = "sharam.khan@example.com",
                 Password = "password3",
                 Role = "customer",
-                CustomerId = 3
+                CustomerId = 3,
+              
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 4,
+                Id = 4,
                 EMail = "christian.andersson@example.com",
                 Password = "password4",
                 Role = "customer",
-                CustomerId = 4
+                CustomerId = 4,
+             
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 5,
+                Id = 5,
                 EMail = "lena.eriksson@example.com",
                 Password = "password5",
                 Role = "customer",
-                CustomerId = 5
+                CustomerId = 5,
+               
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 6,
+                Id = 6,
                 EMail = "andreas.lindstrom@example.com",
                 Password = "password6",
                 Role = "customer",
-                CustomerId = 6
+                CustomerId = 6,
+                
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 7,
+                Id = 7,
                 EMail = "emily.nilsson@example.com",
                 Password = "password7",
                 Role = "customer",
-                CustomerId = 7
+                CustomerId = 7,
+                
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 8,
+                Id = 8,
                 EMail = "david.gustafsson@example.com",
                 Password = "password8",
                 Role = "customer",
-                CustomerId = 8
+                CustomerId = 8,
+              
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 9,
+                Id = 9,
                 EMail = "sophia.berg@example.com",
                 Password = "password9",
                 Role = "customer",
-                CustomerId = 9
+                CustomerId = 9,
+               
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 10,
+                Id = 10,
                 EMail = "alexander.larsson@example.com",
                 Password = "password10",
                 Role = "customer",
-                CustomerId = 10
+                CustomerId = 10,
+              
             });
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 11,
+                Id = 11,
                 EMail = "admin@admin.se",
                 Password = "1234",
                 Role = "admin"
             });
+
 
 
             //company
@@ -238,37 +250,44 @@ namespace Projekt___Avancerad_.NET.Data
             modelBuilder.Entity<Company>().HasData(new Company
             {
                 CompanyId = 1,
-                Name = "Apple"
+                Name = "Apple",
+                Email = "admin@apple.com"
+
             });
 
             modelBuilder.Entity<Company>().HasData(new Company
             {
                 CompanyId = 2,
-                Name = "Samsung"
+                Name = "Samsung",
+                Email = "admin@samsung.com"
             });
 
             modelBuilder.Entity<Company>().HasData(new Company
             {
                 CompanyId = 3,
-                Name = "Xiaomi"
+                Name = "Xiaomi",
+                Email = "admin@xiaomi.com"
             });
 
             modelBuilder.Entity<Company>().HasData(new Company
             {
                 CompanyId = 4,
-                Name = "Google"
+                Name = "Google",
+                Email = "admin@google.com"
             });
 
             modelBuilder.Entity<Company>().HasData(new Company
             {
                 CompanyId = 5,
-                Name = "Microsoft"
+                Name = "Microsoft",
+                Email = "admin@microsoft.com"
             });
 
             modelBuilder.Entity<Company>().HasData(new Company
             {
                 CompanyId = 6,
-                Name = "Amazon"
+                Name = "Amazon",
+                Email = "admin@amazon.com"
             });
 
 
@@ -276,7 +295,7 @@ namespace Projekt___Avancerad_.NET.Data
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 17,
+                Id = 17,
                 EMail = "admin@apple.com",
                 Password = "password1",
                 Role = "company",
@@ -285,7 +304,7 @@ namespace Projekt___Avancerad_.NET.Data
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 12,
+                Id = 12,
                 EMail = "admin@samsung.com",
                 Password = "password2",
                 Role = "company",
@@ -294,7 +313,7 @@ namespace Projekt___Avancerad_.NET.Data
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 13,
+                Id = 13,
                 EMail = "admin@xiaomi.com",
                 Password = "password3",
                 Role = "company",
@@ -303,7 +322,7 @@ namespace Projekt___Avancerad_.NET.Data
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 14,
+                Id = 14,
                 EMail = "admin@google.com",
                 Password = "password4",
                 Role = "company",
@@ -312,7 +331,7 @@ namespace Projekt___Avancerad_.NET.Data
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 15,
+                Id = 15,
                 EMail = "admin@microsoft.com",
                 Password = "password5",
                 Role = "company",
@@ -321,7 +340,7 @@ namespace Projekt___Avancerad_.NET.Data
 
             modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
             {
-                LoginId = 16,
+                Id = 16,
                 EMail = "admin@amazon.com",
                 Password = "password6",
                 Role = "company",

@@ -35,6 +35,17 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// Add authorization policies
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+        policy.RequireRole("admin"));
+    options.AddPolicy("CompanyPolicy", policy =>
+        policy.RequireRole("company"));
+    options.AddPolicy("CustomerPolicy", policy =>
+        policy.RequireRole("customer"));
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -65,8 +76,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Register repositorie
-
+// Register repositories
 builder.Services.AddScoped<IRepository<Customer>, CustomerRepository>();
 builder.Services.AddScoped<IRepository<Appointment>, AppointmentRepository>();
 builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();

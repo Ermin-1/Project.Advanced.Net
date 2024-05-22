@@ -12,8 +12,8 @@ using Projekt___Avancerad_.NET.Data;
 namespace Project.Advanced.Net.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240522062306_Initial Creation")]
-    partial class InitialCreation
+    [Migration("20240522094344_initial creation")]
+    partial class initialcreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,189 @@ namespace Project.Advanced.Net.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Project.Advanced.Net.Models.LoginInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LoginInfos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CompanyId = 0,
+                            CustomerId = 1,
+                            EMail = "ermin.husic@example.com",
+                            Password = "password1",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CompanyId = 0,
+                            CustomerId = 2,
+                            EMail = "oskar.johansson@example.com",
+                            Password = "password2",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CompanyId = 0,
+                            CustomerId = 3,
+                            EMail = "sharam.khan@example.com",
+                            Password = "password3",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CompanyId = 0,
+                            CustomerId = 4,
+                            EMail = "christian.andersson@example.com",
+                            Password = "password4",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CompanyId = 0,
+                            CustomerId = 5,
+                            EMail = "lena.eriksson@example.com",
+                            Password = "password5",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CompanyId = 0,
+                            CustomerId = 6,
+                            EMail = "andreas.lindstrom@example.com",
+                            Password = "password6",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CompanyId = 0,
+                            CustomerId = 7,
+                            EMail = "emily.nilsson@example.com",
+                            Password = "password7",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CompanyId = 0,
+                            CustomerId = 8,
+                            EMail = "david.gustafsson@example.com",
+                            Password = "password8",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CompanyId = 0,
+                            CustomerId = 9,
+                            EMail = "sophia.berg@example.com",
+                            Password = "password9",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CompanyId = 0,
+                            CustomerId = 10,
+                            EMail = "alexander.larsson@example.com",
+                            Password = "password10",
+                            Role = "customer"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CompanyId = 0,
+                            CustomerId = 0,
+                            EMail = "admin@admin.se",
+                            Password = "1234",
+                            Role = "admin"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CompanyId = 1,
+                            CustomerId = 0,
+                            EMail = "admin@apple.com",
+                            Password = "password1",
+                            Role = "company"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CompanyId = 2,
+                            CustomerId = 0,
+                            EMail = "admin@samsung.com",
+                            Password = "password2",
+                            Role = "company"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CompanyId = 3,
+                            CustomerId = 0,
+                            EMail = "admin@xiaomi.com",
+                            Password = "password3",
+                            Role = "company"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CompanyId = 4,
+                            CustomerId = 0,
+                            EMail = "admin@google.com",
+                            Password = "password4",
+                            Role = "company"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CompanyId = 5,
+                            CustomerId = 0,
+                            EMail = "admin@microsoft.com",
+                            Password = "password5",
+                            Role = "company"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CompanyId = 6,
+                            CustomerId = 0,
+                            EMail = "admin@amazon.com",
+                            Password = "password6",
+                            Role = "company"
+                        });
+                });
 
             modelBuilder.Entity("ProjectModels.Appointment", b =>
                 {
@@ -56,210 +239,210 @@ namespace Project.Advanced.Net.Migrations
                             AppointmentId = 1,
                             CompanyId = 1,
                             CustomerId = 1,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9224)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9606)
                         },
                         new
                         {
                             AppointmentId = 2,
                             CompanyId = 1,
                             CustomerId = 1,
-                            Time = new DateTime(2024, 5, 23, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9275)
+                            Time = new DateTime(2024, 5, 23, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9654)
                         },
                         new
                         {
                             AppointmentId = 3,
                             CompanyId = 1,
                             CustomerId = 1,
-                            Time = new DateTime(2024, 5, 24, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9287)
+                            Time = new DateTime(2024, 5, 24, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9666)
                         },
                         new
                         {
                             AppointmentId = 4,
                             CompanyId = 1,
                             CustomerId = 2,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9297)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9675)
                         },
                         new
                         {
                             AppointmentId = 5,
                             CompanyId = 1,
                             CustomerId = 2,
-                            Time = new DateTime(2024, 6, 1, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9306)
+                            Time = new DateTime(2024, 6, 1, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9684)
                         },
                         new
                         {
                             AppointmentId = 6,
                             CompanyId = 1,
                             CustomerId = 2,
-                            Time = new DateTime(2024, 6, 11, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9317)
+                            Time = new DateTime(2024, 6, 11, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9695)
                         },
                         new
                         {
                             AppointmentId = 7,
                             CompanyId = 2,
                             CustomerId = 3,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9326)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9705)
                         },
                         new
                         {
                             AppointmentId = 8,
                             CompanyId = 2,
                             CustomerId = 3,
-                            Time = new DateTime(2024, 6, 6, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9335)
+                            Time = new DateTime(2024, 6, 6, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9715)
                         },
                         new
                         {
                             AppointmentId = 9,
                             CompanyId = 2,
                             CustomerId = 3,
-                            Time = new DateTime(2024, 6, 11, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9344)
+                            Time = new DateTime(2024, 6, 11, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9724)
                         },
                         new
                         {
                             AppointmentId = 10,
                             CompanyId = 3,
                             CustomerId = 4,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9353)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9734)
                         },
                         new
                         {
                             AppointmentId = 11,
                             CompanyId = 3,
                             CustomerId = 4,
-                            Time = new DateTime(2024, 5, 23, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9362)
+                            Time = new DateTime(2024, 5, 23, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9744)
                         },
                         new
                         {
                             AppointmentId = 12,
                             CompanyId = 3,
                             CustomerId = 4,
-                            Time = new DateTime(2024, 5, 24, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9371)
+                            Time = new DateTime(2024, 5, 24, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9754)
                         },
                         new
                         {
                             AppointmentId = 13,
                             CompanyId = 5,
                             CustomerId = 5,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9380)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9763)
                         },
                         new
                         {
                             AppointmentId = 14,
                             CompanyId = 5,
                             CustomerId = 5,
-                            Time = new DateTime(2024, 6, 1, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9390)
+                            Time = new DateTime(2024, 6, 1, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9773)
                         },
                         new
                         {
                             AppointmentId = 15,
                             CompanyId = 5,
                             CustomerId = 5,
-                            Time = new DateTime(2024, 6, 6, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9400)
+                            Time = new DateTime(2024, 6, 6, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9782)
                         },
                         new
                         {
                             AppointmentId = 16,
                             CompanyId = 5,
                             CustomerId = 6,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9408)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9791)
                         },
                         new
                         {
                             AppointmentId = 17,
                             CompanyId = 5,
                             CustomerId = 6,
-                            Time = new DateTime(2024, 5, 30, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9417)
+                            Time = new DateTime(2024, 5, 30, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9800)
                         },
                         new
                         {
                             AppointmentId = 18,
                             CompanyId = 5,
                             CustomerId = 6,
-                            Time = new DateTime(2024, 5, 24, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9427)
+                            Time = new DateTime(2024, 5, 24, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9810)
                         },
                         new
                         {
                             AppointmentId = 19,
                             CompanyId = 1,
                             CustomerId = 7,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9436)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9819)
                         },
                         new
                         {
                             AppointmentId = 20,
                             CompanyId = 1,
                             CustomerId = 7,
-                            Time = new DateTime(2024, 6, 16, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9445)
+                            Time = new DateTime(2024, 6, 16, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9829)
                         },
                         new
                         {
                             AppointmentId = 21,
                             CompanyId = 1,
                             CustomerId = 7,
-                            Time = new DateTime(2024, 6, 12, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9455)
+                            Time = new DateTime(2024, 6, 12, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9862)
                         },
                         new
                         {
                             AppointmentId = 22,
                             CompanyId = 2,
                             CustomerId = 8,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9464)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9873)
                         },
                         new
                         {
                             AppointmentId = 23,
                             CompanyId = 2,
                             CustomerId = 8,
-                            Time = new DateTime(2024, 5, 26, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9473)
+                            Time = new DateTime(2024, 5, 26, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9883)
                         },
                         new
                         {
                             AppointmentId = 24,
                             CompanyId = 2,
                             CustomerId = 8,
-                            Time = new DateTime(2024, 5, 30, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9482)
+                            Time = new DateTime(2024, 5, 30, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9893)
                         },
                         new
                         {
                             AppointmentId = 25,
                             CompanyId = 3,
                             CustomerId = 9,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9492)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9901)
                         },
                         new
                         {
                             AppointmentId = 26,
                             CompanyId = 3,
                             CustomerId = 9,
-                            Time = new DateTime(2024, 5, 26, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9545)
+                            Time = new DateTime(2024, 5, 26, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9928)
                         },
                         new
                         {
                             AppointmentId = 27,
                             CompanyId = 3,
                             CustomerId = 9,
-                            Time = new DateTime(2024, 5, 31, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9556)
+                            Time = new DateTime(2024, 5, 31, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9937)
                         },
                         new
                         {
                             AppointmentId = 28,
                             CompanyId = 4,
                             CustomerId = 10,
-                            Time = new DateTime(2024, 5, 22, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9566)
+                            Time = new DateTime(2024, 5, 22, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9947)
                         },
                         new
                         {
                             AppointmentId = 29,
                             CompanyId = 4,
                             CustomerId = 10,
-                            Time = new DateTime(2024, 5, 23, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9576)
+                            Time = new DateTime(2024, 5, 23, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9957)
                         },
                         new
                         {
                             AppointmentId = 30,
                             CompanyId = 4,
                             CustomerId = 10,
-                            Time = new DateTime(2024, 5, 24, 8, 23, 6, 173, DateTimeKind.Local).AddTicks(9585)
+                            Time = new DateTime(2024, 5, 24, 11, 43, 44, 554, DateTimeKind.Local).AddTicks(9966)
                         });
                 });
 
@@ -300,6 +483,10 @@ namespace Project.Advanced.Net.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompanyId"));
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -312,31 +499,37 @@ namespace Project.Advanced.Net.Migrations
                         new
                         {
                             CompanyId = 1,
+                            Email = "admin@apple.com",
                             Name = "Apple"
                         },
                         new
                         {
                             CompanyId = 2,
+                            Email = "admin@samsung.com",
                             Name = "Samsung"
                         },
                         new
                         {
                             CompanyId = 3,
+                            Email = "admin@xiaomi.com",
                             Name = "Xiaomi"
                         },
                         new
                         {
                             CompanyId = 4,
+                            Email = "admin@google.com",
                             Name = "Google"
                         },
                         new
                         {
                             CompanyId = 5,
+                            Email = "admin@microsoft.com",
                             Name = "Microsoft"
                         },
                         new
                         {
                             CompanyId = 6,
+                            Email = "admin@amazon.com",
                             Name = "Amazon"
                         });
                 });
@@ -465,178 +658,6 @@ namespace Project.Advanced.Net.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ProjectModels.LoginInfo", b =>
-                {
-                    b.Property<int>("LoginId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoginId"));
-
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EMail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LoginId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("LoginInfos");
-
-                    b.HasData(
-                        new
-                        {
-                            LoginId = 1,
-                            CustomerId = 1,
-                            EMail = "ermin.husic@example.com",
-                            Password = "password1",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 2,
-                            CustomerId = 2,
-                            EMail = "oskar.johansson@example.com",
-                            Password = "password2",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 3,
-                            CustomerId = 3,
-                            EMail = "sharam.khan@example.com",
-                            Password = "password3",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 4,
-                            CustomerId = 4,
-                            EMail = "christian.andersson@example.com",
-                            Password = "password4",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 5,
-                            CustomerId = 5,
-                            EMail = "lena.eriksson@example.com",
-                            Password = "password5",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 6,
-                            CustomerId = 6,
-                            EMail = "andreas.lindstrom@example.com",
-                            Password = "password6",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 7,
-                            CustomerId = 7,
-                            EMail = "emily.nilsson@example.com",
-                            Password = "password7",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 8,
-                            CustomerId = 8,
-                            EMail = "david.gustafsson@example.com",
-                            Password = "password8",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 9,
-                            CustomerId = 9,
-                            EMail = "sophia.berg@example.com",
-                            Password = "password9",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 10,
-                            CustomerId = 10,
-                            EMail = "alexander.larsson@example.com",
-                            Password = "password10",
-                            Role = "customer"
-                        },
-                        new
-                        {
-                            LoginId = 11,
-                            EMail = "admin@admin.se",
-                            Password = "1234",
-                            Role = "admin"
-                        },
-                        new
-                        {
-                            LoginId = 17,
-                            CompanyId = 1,
-                            EMail = "admin@apple.com",
-                            Password = "password1",
-                            Role = "company"
-                        },
-                        new
-                        {
-                            LoginId = 12,
-                            CompanyId = 2,
-                            EMail = "admin@samsung.com",
-                            Password = "password2",
-                            Role = "company"
-                        },
-                        new
-                        {
-                            LoginId = 13,
-                            CompanyId = 3,
-                            EMail = "admin@xiaomi.com",
-                            Password = "password3",
-                            Role = "company"
-                        },
-                        new
-                        {
-                            LoginId = 14,
-                            CompanyId = 4,
-                            EMail = "admin@google.com",
-                            Password = "password4",
-                            Role = "company"
-                        },
-                        new
-                        {
-                            LoginId = 15,
-                            CompanyId = 5,
-                            EMail = "admin@microsoft.com",
-                            Password = "password5",
-                            Role = "company"
-                        },
-                        new
-                        {
-                            LoginId = 16,
-                            CompanyId = 6,
-                            EMail = "admin@amazon.com",
-                            Password = "password6",
-                            Role = "company"
-                        });
-                });
-
             modelBuilder.Entity("ProjectModels.Appointment", b =>
                 {
                     b.HasOne("ProjectModels.Company", "Company")
@@ -665,21 +686,6 @@ namespace Project.Advanced.Net.Migrations
                         .IsRequired();
 
                     b.Navigation("Appointment");
-                });
-
-            modelBuilder.Entity("ProjectModels.LoginInfo", b =>
-                {
-                    b.HasOne("ProjectModels.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.HasOne("ProjectModels.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("ProjectModels.Company", b =>

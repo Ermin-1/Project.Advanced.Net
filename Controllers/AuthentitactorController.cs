@@ -41,7 +41,7 @@ public class AuthentitactorController : ControllerBase
             authClaims = authClaims.Append(new Claim(ClaimTypes.Role, role)).ToArray();
         }
 
-        var authSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]));
+        var authSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]));
 
         var token = new JwtSecurityToken(
             expires: DateTime.Now.AddHours(3),

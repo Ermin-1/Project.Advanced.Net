@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project.Advanced.Net.Models;
 using ProjectModels;
 using Projekt___Avancerad_.NET.Data;
-
 namespace Project.Advanced.Net.Services
 {
-    public class LoginRepository : ILogin
+    public class LoginRepository 
     {
         private AppDbContext _appDbContext;
         public LoginRepository(AppDbContext appDbContext)
@@ -26,7 +26,7 @@ namespace Project.Advanced.Net.Services
 
         public async Task<LoginInfo> Delete(int id)
         {
-            var result = await _appDbContext.LoginInfos.FirstOrDefaultAsync(l => l.LoginId == id);
+            var result = await _appDbContext.LoginInfos.FirstOrDefaultAsync(l => l.Id == id);
             if (result != null)
             {
                 _appDbContext.LoginInfos.Remove(result);
@@ -64,7 +64,7 @@ namespace Project.Advanced.Net.Services
 
         public async Task<LoginInfo> GetById(int id)
         {
-            return await _appDbContext.LoginInfos.FirstOrDefaultAsync(l => l.LoginId == id);
+            return await _appDbContext.LoginInfos.FirstOrDefaultAsync(l => l.Id == id);
         }
 
         public Task<LoginInfo> GetByIdAsync(int Id)
@@ -86,7 +86,7 @@ namespace Project.Advanced.Net.Services
 
         public async Task<LoginInfo> Update(LoginInfo entity)
         {
-            var result = await _appDbContext.LoginInfos.FirstOrDefaultAsync(l => l.LoginId == entity.LoginId);
+            var result = await _appDbContext.LoginInfos.FirstOrDefaultAsync(l => l.Id == entity.Id);
             if (result != null)
             {
                 result.EMail = entity.EMail;

@@ -27,7 +27,6 @@ namespace Project.Advanced.Net.Controllers
         }
 
         [Authorize(Policy = "AdminPolicy")]
-        [Authorize(Policy = "CompanyPolicy")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppointmentDto>>> Get(
             string sortBy = "date",
