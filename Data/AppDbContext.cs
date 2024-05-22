@@ -13,6 +13,7 @@ namespace Projekt___Avancerad_.NET.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<AppointmentHistory> AppointmentHistories { get; set; }
+        public DbSet<LoginInfo> LoginInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,7 +36,8 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Ermin",
                 LastName = "Husic",
                 Address = "Campusvägen 7",
-                PhoneNumber = 0734141429
+                PhoneNumber = 0734141429,
+                Email = "ermin.husic@example.com"
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
@@ -44,7 +46,8 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Oskar",
                 LastName = "Johansson",
                 Address = "Storgatan 10",
-                PhoneNumber = 0723456789
+                PhoneNumber = 0723456789,
+                Email = "oskar.johansson@example.com"
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
@@ -53,7 +56,8 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Sharam",
                 LastName = "Khan",
                 Address = "Lilla vägen 3",
-                PhoneNumber = 0734567890
+                PhoneNumber = 0734567890,
+                Email = "sharam.khan@example.com"
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
@@ -62,7 +66,8 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Christian",
                 LastName = "Andersson",
                 Address = "Parkgatan 15",
-                PhoneNumber = 0765432109
+                PhoneNumber = 0765432109,
+                Email = "christian.andersson@example.com"
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
@@ -71,7 +76,8 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Lena",
                 LastName = "Eriksson",
                 Address = "Skolgatan 2",
-                PhoneNumber = 0721567890
+                PhoneNumber = 0721567890,
+                Email = "lena.eriksson@example.com"
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
@@ -80,7 +86,8 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Andreas",
                 LastName = "Lindström",
                 Address = "Kyrkvägen 6",
-                PhoneNumber = 0709876543
+                PhoneNumber = 0709876543,
+                Email = "andreas.lindstrom@example.com"
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
@@ -89,7 +96,8 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Emily",
                 LastName = "Nilsson",
                 Address = "Strandvägen 12",
-                PhoneNumber = 0723456781
+                PhoneNumber = 0723456781,
+                Email = "emily.nilsson@example.com"
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
@@ -98,9 +106,9 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "David",
                 LastName = "Gustafsson",
                 Address = "Backstugan 4",
-                PhoneNumber = 0761234567
+                PhoneNumber = 0761234567,
+                Email = "david.gustafsson@example.com"
             });
-
 
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
@@ -108,7 +116,8 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Sophia",
                 LastName = "Berg",
                 Address = "Musselvägen 4",
-                PhoneNumber = 0723456782
+                PhoneNumber = 0723456782,
+                Email = "sophia.berg@example.com"
             });
 
             modelBuilder.Entity<Customer>().HasData(new Customer
@@ -117,8 +126,114 @@ namespace Projekt___Avancerad_.NET.Data
                 FirstName = "Alexander",
                 LastName = "Larsson",
                 Address = "Storgatan 2",
-                PhoneNumber = 0768765432
+                PhoneNumber = 0768765432,
+                Email = "alexander.larsson@example.com"
             });
+
+
+            //login
+
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 1,
+                EMail = "ermin.husic@example.com",
+                Password = "password1",
+                Role = "customer",
+                CustomerId = 1
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 2,
+                EMail = "oskar.johansson@example.com",
+                Password = "password2",
+                Role = "customer",
+                CustomerId = 2
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 3,
+                EMail = "sharam.khan@example.com",
+                Password = "password3",
+                Role = "customer",
+                CustomerId = 3
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 4,
+                EMail = "christian.andersson@example.com",
+                Password = "password4",
+                Role = "customer",
+                CustomerId = 4
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 5,
+                EMail = "lena.eriksson@example.com",
+                Password = "password5",
+                Role = "customer",
+                CustomerId = 5
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 6,
+                EMail = "andreas.lindstrom@example.com",
+                Password = "password6",
+                Role = "customer",
+                CustomerId = 6
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 7,
+                EMail = "emily.nilsson@example.com",
+                Password = "password7",
+                Role = "customer",
+                CustomerId = 7
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 8,
+                EMail = "david.gustafsson@example.com",
+                Password = "password8",
+                Role = "customer",
+                CustomerId = 8
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 9,
+                EMail = "sophia.berg@example.com",
+                Password = "password9",
+                Role = "customer",
+                CustomerId = 9
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 10,
+                EMail = "alexander.larsson@example.com",
+                Password = "password10",
+                Role = "customer",
+                CustomerId = 10
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 11,
+                EMail = "admin@admin.se",
+                Password = "1234",
+                Role = "admin"
+            });
+
+
+            //company
 
             modelBuilder.Entity<Company>().HasData(new Company
             {
@@ -155,6 +270,64 @@ namespace Projekt___Avancerad_.NET.Data
                 CompanyId = 6,
                 Name = "Amazon"
             });
+
+
+            //company login
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 17,
+                EMail = "admin@apple.com",
+                Password = "password1",
+                Role = "admin",
+                CompanyId = 1
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 12,
+                EMail = "admin@samsung.com",
+                Password = "password2",
+                Role = "admin",
+                CompanyId = 2
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 13,
+                EMail = "admin@xiaomi.com",
+                Password = "password3",
+                Role = "admin",
+                CompanyId = 3
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 14,
+                EMail = "admin@google.com",
+                Password = "password4",
+                Role = "admin",
+                CompanyId = 4
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 15,
+                EMail = "admin@microsoft.com",
+                Password = "password5",
+                Role = "admin",
+                CompanyId = 5
+            });
+
+            modelBuilder.Entity<LoginInfo>().HasData(new LoginInfo
+            {
+                LoginId = 16,
+                EMail = "admin@amazon.com",
+                Password = "password6",
+                Role = "admin",
+                CompanyId = 6
+            });
+
 
             modelBuilder.Entity<Appointment>().HasData(new Appointment { AppointmentId = 1, Time = DateTime.Now, CustomerId = 1, CompanyId = 1 });
             modelBuilder.Entity<Appointment>().HasData(new Appointment { AppointmentId = 2, Time = DateTime.Now.AddDays(1), CustomerId = 1, CompanyId = 1 });
